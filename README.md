@@ -1,4 +1,4 @@
-# Blaumac React Template
+# Blaumac FED
 
 ## Prerequisites
 
