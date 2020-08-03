@@ -1,0 +1,93 @@
+// Login
+
+.login-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  // overflow: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-content {
+  // flex: 1;
+  padding: 32px 0;
+  max-width: 300px;
+}
+
+@media (min-width: 1200px) {
+  .login-container {
+    background-image: url(../../src/shared/assets/Login-Background.svg);
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+  }
+
+  .login-top {
+    text-align: center;
+  }
+
+  .login-header {
+    height: 44px;
+    line-height: 44px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .login-logo {
+    height: 44px;
+    margin-right: 16px;
+    vertical-align: top;
+  }
+
+  .login-title {
+    position: relative;
+    top: 2px;
+    color: #101a51;
+    font-weight: 600;
+    font-size: 33px;
+    font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+
+  .login-desc {
+    margin-top: 12px;
+    margin-bottom: 40px;
+    color: #101a51;
+    font-size: 20px;
+  }
+
+  .login-submit {
+    width: 100%;
+    margin-top: 10px;
+    background: #101a51;
+  }
+  .login-form-forgot {
+    // float: right;
+    float: left;
+  }
+}
+
+//Forgot Password
+
+.forgot-desc {
+  margin-top: 12px;
+  margin-bottom: 20px;
+  color: #101a51;
+  font-size: 20px;
+}
+
+.forgot-pass-notif {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: black;
+  font-size: 16px;
+}
+.forgot-pass-message {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: gray;
+  font-size: 14px;
+}

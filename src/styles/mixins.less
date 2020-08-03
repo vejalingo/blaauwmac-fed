@@ -1,0 +1,17 @@
+.breakpoint(@point) {
+  & when (@point = 'large') {
+    @media (max-width: 80em) {
+      @content();
+    }
+  }
+  & when (@point = 'mid') {
+    @media (max-width: 60em) {
+      @content();
+    }
+  }
+  & when (@point = 'small') {
+    @media (max-width: 42em) {
+      @content();
+    }
+  }
+}
