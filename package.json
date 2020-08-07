@@ -7,7 +7,7 @@
     "babel-plugin-import": "^1.12.2",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.5.2",
-    "customize-cra": "^0.8.0",
+    "customize-cra": "^0.9.1",
     "flow-bin": "^0.112.0",
     "history": "^4.10.1",
     "less": "^3.10.3",
