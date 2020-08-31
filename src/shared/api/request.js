@@ -62,7 +62,7 @@ const errorHandler = error => {
  * Default parameters when configuring request
  */
 
-const basePath = process.env.REACT_APP_API_ENDPOINT
+const basePath = process.env.NODE_ENV !== "development" ? "https://blaaumac-be.herokuapp.com" : process.env.REACT_APP_API_ENDPOINT
 const apiPrefix = 'api/v1'
 const requestHandler = extend({
   prefix: `${basePath}/${apiPrefix}`,
