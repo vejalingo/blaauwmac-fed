@@ -23,13 +23,13 @@ const codeMessage = {
   500: 'An error occurred on the server. Please check the server.',
   502: 'Gateway error.',
   503: 'The service is unavailable and the server is temporarily overloaded or maintained.',
-  504: 'The gateway timed out.'
+  504: 'The gateway timed out.',
 }
 /**
  * Exception handler
  */
 
-const errorHandler = error => {
+const errorHandler = (error) => {
   const { response } = error
   console.log(response)
 
@@ -47,12 +47,12 @@ const errorHandler = error => {
     const { status, url } = response
     notification.error({
       message: `Request error ${status}`,
-      description: errorText
+      description: errorText,
     })
   } else if (!response) {
     notification.error({
       description: 'Your network is abnormal and cannot connect to the server',
-      message: 'Network anomaly'
+      message: 'Network anomaly',
     })
   }
 
@@ -62,16 +62,16 @@ const errorHandler = error => {
  * Default parameters when configuring request
  */
 
-const basePath = process.env.NODE_ENV !== "development" ? "https://blaaumac-be.herokuapp.com" : process.env.REACT_APP_API_ENDPOINT
+const basePath = 'https://blaaumac-be.herokuapp.com'
 const apiPrefix = 'api/v1'
 const requestHandler = extend({
   prefix: `${basePath}/${apiPrefix}`,
   credentials: 'omit',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   // redirect: 'error',
-  errorHandler
+  errorHandler,
 })
 
 // const refreshTokenFromHeader = header => {
@@ -84,7 +84,7 @@ const requestHandler = extend({
 // }
 
 requestHandler.interceptors.request.use((_, options) => {
-  const token = getToken(t => t)
+  const token = getToken((t) => t)
 
   if (token) {
     return {
@@ -92,9 +92,9 @@ requestHandler.interceptors.request.use((_, options) => {
         ...options,
         headers: {
           ...options.headers,
-          Authorization: `Bearer ${token}`
-        }
-      }
+          Authorization: `Bearer ${token}`,
+        },
+      },
     }
   }
   return false
