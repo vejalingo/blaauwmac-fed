@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/state-in-constructor */
 /* eslint-disable no-class-assign */
 import React, { Component } from 'react'
@@ -50,15 +51,15 @@ function Render({ listItems, orgId, OnSearch, ...props }) {
     .filter(pred => pred.status === 'Repudiated').length
 
   const businessOpened = listItems
-    ?.filter(pred => pred.policy_section === 'Business All Risk')
+    ?.filter(pred => pred.policy_section === 'Business All Risks')
     .filter(pred => !['Settled', 'Repudiated'].includes(pred.status)).length
 
   const businessPaid = listItems
-    ?.filter(pred => pred.policy_section === 'Business All Risk')
+    ?.filter(pred => pred.policy_section === 'Business All Risks')
     .filter(pred => pred.status === 'Settled').length
 
   const businessRepudiated = listItems
-    ?.filter(pred => pred.policy_section === 'Business All Risk')
+    ?.filter(pred => pred.policy_section === 'Business All Risks')
     .filter(pred => pred.status === 'Repudiated').length
 
   const motorOpened = listItems

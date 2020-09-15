@@ -40,6 +40,7 @@ export const createClaim = (userId, data) => dispatch => {
   api
     .post(`/claims/${userId}`, { data })
     .then(() => {
+      window.location.reload()
       dispatch(push('/dashboard'))
     })
     .catch(({ description }) => {

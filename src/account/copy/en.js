@@ -11,8 +11,9 @@ export default {
     }
   },
   login: {
-    title: 'Claims Portal',
+    title: 'Blue Claims Portal',
     desc: 'Blaauwmac™',
+    blue: 'Blue',
     forgotPass: 'Forgot Password',
     resetPass: 'Reset Password',
     remember: 'Remeber me',
@@ -22,7 +23,7 @@ export default {
             to check your junk or spam folder if you don't receive our email soon.`
   },
   register: {
-    title: 'Claims Portal',
+    title: 'Blue Claims Portal',
     desc: 'Blaauwmac™',
     register: 'Register'
   },

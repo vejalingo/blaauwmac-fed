@@ -43,37 +43,37 @@ export const getModules = id =>
             {
               title: copy('Policy Documents'),
               icon: 'control',
-              link: `/underwriting/${id}/overview`
+              link: `/underwriting/${id}/policy-documents`
             },
             {
               title: 'Cover Summary',
-              link: `/underwriting/${id}/overview`,
+              link: `/underwriting/${id}/cover-summary`,
               icon: 'notification'
             },
             {
               title: 'Endorsements',
-              link: `/underwriting/${id}/overview`,
+              link: `/underwriting/${id}/endorsments`,
               icon: 'mail'
             },
             {
               title: 'SASRIA for Councilors',
-              link: `/underwriting/${id}/overview`,
+              link: `/underwriting/${id}/sasria`,
               icon: 'number'
             },
 
             {
               title: 'Policy Structure',
-              link: `/underwriting/${id}/overview`,
+              link: `/underwriting/${id}/policy-structure`,
               icon: 'project'
             },
             {
               title: 'Outstanding Invoices',
-              link: `/underwriting/${id}/overview`,
+              link: `/underwriting/${id}/outstanding-invoices`,
               icon: 'filter'
             },
             {
               title: 'Additional Insurance Policy',
-              link: `/underwriting/${id}/overview`,
+              link: `/underwriting/${id}/additional-insurance`,
               icon: 'filter'
             }
           ]

@@ -1,5 +1,5 @@
 export default {
-  mainTitle: 'Claims System',
+  mainTitle: 'Blue Claims System',
   site: 'Commercial Claims System',
   footer: ' Commercial Claims System © 2020 Created by Blaauwmac™',
   save: 'Save',

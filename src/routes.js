@@ -32,6 +32,14 @@ import OverviewForm from './modules/underwriting/components/overview/policy-deta
 import SectionsOfCover from './modules/underwriting/components/overview/cover-sections'
 import SectionsOfCoverForm from './modules/underwriting/components/overview/cover-section-form'
 
+import Sasria from './modules/underwriting/components/sasria'
+import CoverSummary from './modules/underwriting/components/cover-summary'
+import AdditionalinsurancePolicy from './modules/underwriting/components/additional-insurance-policy'
+import Endorsments from './modules/underwriting/components/endorsments'
+import PolicyDocuments from './modules/underwriting/components/policy-documents'
+import PolicyStructure from './modules/underwriting/components/policy-structure'
+import OutstandingInvoice from './modules/underwriting/components/outstanding-invoices'
+
 import BuildingCombined from './modules/underwriting/components/overview/sections/building-combined'
 
 // Account
@@ -124,6 +132,55 @@ const Routes = ({ history }) => (
       path="/underwriting/:orgId/cover-sections"
       wrapper={BasicLayout}
       component={form(SectionsOfCoverForm, 'create')}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/cover-summary"
+      wrapper={BasicLayout}
+      component={CoverSummary}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/endorsments"
+      wrapper={BasicLayout}
+      component={Endorsments}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/outstanding-invoices"
+      wrapper={BasicLayout}
+      component={OutstandingInvoice}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/policy-documents"
+      wrapper={BasicLayout}
+      component={PolicyDocuments}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/policy-structure"
+      wrapper={BasicLayout}
+      component={PolicyStructure}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/additional-insurance"
+      wrapper={BasicLayout}
+      component={AdditionalinsurancePolicy}
+    />
+
+    <PrivateRoute
+      exact
+      path="/underwriting/:orgId/sasria"
+      wrapper={BasicLayout}
+      component={Sasria}
     />
 
     {/* Account */}

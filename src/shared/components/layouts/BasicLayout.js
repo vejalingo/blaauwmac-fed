@@ -39,10 +39,7 @@ const BasicLayout = ({ children }) => {
         </span>
 
         <span className="menu-right">
-          <span style={{ fontWeight: 'bold', color: '#fff' }}>
-            {userDetails()}
-            logged In
-          </span>
+          <span style={{ fontWeight: 'bold', color: '#fff' }}>{userDetails()}</span>
           <Avatar menu />
         </span>
       </Header>

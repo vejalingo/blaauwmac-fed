@@ -106,7 +106,7 @@ const Three = ({ gfd, vf, formType }) => {
         </Form.Item>
 
         <Form.Item
-          label="Motor"
+          label="Vehicle Details"
           style={{ display: 'inline-block', width: 'calc(50% - 20px)', margin: 10 }}
         >
           {gfd('motor')(<Checkbox onChange={onMotorChanged} />)}

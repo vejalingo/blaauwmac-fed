@@ -1,10 +1,10 @@
+/* eslint-disable global-require */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
 import Intl from 'shared/hocs/intl'
 import PropTypes from 'prop-types'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
-import { ReactComponent as Logo } from 'shared/assets/logo.svg'
 import MainFooter from 'shared/components/layouts/MainFooter'
 
 let UserRegister = ({
@@ -28,7 +28,7 @@ let UserRegister = ({
       <div className="login-content">
         <div className="login-top">
           <div className="login-header">
-            <Logo alt="logo" className="login-logo" />
+            <img src={require('shared/assets/logo.jpeg')} alt="Blaaumac" />
             <span className="login-title">{copy.register('title')}</span>
           </div>
           <div className="login-desc">{copy.register('desc')}</div>

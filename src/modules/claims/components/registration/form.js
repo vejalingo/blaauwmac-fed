@@ -52,15 +52,7 @@ class ClaimForm extends Component {
   }
 
   finishProcess = e => {
-    const {
-      orgId,
-      claimId,
-      formType,
-      form: { validateFields },
-      createClaim,
-      updateClaim,
-      item
-    } = this.props
+    const { orgId, claimId, formType, form, createClaim, updateClaim, item } = this.props
 
     e.preventDefault()
     if (formType === 'edit') {
@@ -70,20 +62,30 @@ class ClaimForm extends Component {
     }
   }
 
+  handlePrev = e => {
+    const {
+      form: { validateFields }
+    } = this.props
+    e.preventDefault()
+    validateFields((err, values) => {
+      this.prev(values)
+    })
+  }
+
   next = values => {
     const { saveClaimsToState, formType } = this.props
-    const current = this.state.current + 1
 
     if (formType === 'create') {
       saveClaimsToState(values)
     }
 
-    this.setState({ current })
+    this.setState(prevState => ({ current: prevState.current + 1 }))
   }
 
-  prev = () => {
-    const current = this.state.current - 1
-    this.setState({ current })
+  prev = values => {
+    const { saveClaimsToState, formType } = this.props
+    saveClaimsToState(values)
+    this.setState(prevState => ({ current: prevState.current - 1 }))
   }
 
   onChange = current => {
@@ -123,10 +125,12 @@ class ClaimForm extends Component {
       { title: 'Documents', content: <FormSix {...this.props} gfd={getFieldDecorator} /> }
     ]
 
+    const capitalize = str => `${str.split('')[0].toUpperCase()}${str.substring(1)}`
+
     return (
       <>
         <Title level={3} className="heading-wrapper">
-          {formType.toUpperCase() + ' ' + 'Claim'}
+          {`${capitalize(formType)} Claim`}
         </Title>
 
         <div className="content-nofilter-wrapper">
@@ -138,7 +142,7 @@ class ClaimForm extends Component {
 
           <div className="steps-content" style={{ padding: '20px 0' }}>
             <Form
-              onSubmit={this.handleSubmit}
+              // onSubmit={this.handleSubmit}
               layout="horizontal"
               className="ant-advanced-search-form"
             >
@@ -158,7 +162,7 @@ class ClaimForm extends Component {
               </Button>
             )}
             {current > 0 && (
-              <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+              <Button style={{ marginLeft: 8 }} onClick={this.handlePrev}>
                 Previous
               </Button>
             )}
@@ -171,174 +175,186 @@ class ClaimForm extends Component {
 
 ClaimForm = Form.create({
   name: 'claimform',
-  mapPropsToFields({ item, formType }) {
+  mapPropsToFields({ claim, item, formType }) {
     let obj = {}
     if (formType === 'create') {
       obj = {
+        policy_section: Form.createFormField({
+          ...claim.policy_section,
+          value: claim.policy_section
+        }),
+        sub_section: Form.createFormField({
+          ...claim.sub_section,
+          value: claim.sub_section
+        }),
+
+        saps_number: Form.createFormField({
+          ...claim.saps_number,
+          value: claim.saps_number
+        }),
         date_loss: Form.createFormField({
-          ...item.date_loss,
-          value: item.date_loss
+          ...claim.date_loss,
+          value: claim.date_loss
         }),
         date_registration: Form.createFormField({
-          ...item.date_registration,
-          value: item.date_registration
+          ...claim.date_registration,
+          value: claim.date_registration
         }),
         date_acquired: Form.createFormField({
-          ...item.date_acquired,
-          value: item.date_acquired
+          ...claim.date_acquired,
+          value: claim.date_acquired
         }),
         appointment_date: Form.createFormField({
-          ...item.appointment_date,
-          value: item.appointment_date
+          ...claim.appointment_date,
+          value: claim.appointment_date
         })
       }
     } else {
       obj = {}
     }
 
-    if (Object.keys(item).length > 0) {
-      return {
-        ...obj,
-        policy_section: Form.createFormField({
-          ...item.policy_section,
-          value: item.policy_section
-        }),
-        sub_section: Form.createFormField({
-          ...item.sub_section,
-          value: item.sub_section
-        }),
+    return {
+      ...obj,
+      policy_section: Form.createFormField({
+        ...item.policy_section,
+        value: item.policy_section
+      }),
+      sub_section: Form.createFormField({
+        ...item.sub_section,
+        value: item.sub_section
+      }),
 
-        saps_number: Form.createFormField({
-          ...item.saps_number,
-          value: item.saps_number
-        }),
-        case_number: Form.createFormField({
-          ...item.case_number,
-          value: item.case_number
-        }),
-        claim_number: Form.createFormField({
-          ...item.claim_number,
-          value: item.claim_number
-        }),
-        name_user: Form.createFormField({
-          ...item.name_user,
-          value: item.name_user
-        }),
-        broker_c_number: Form.createFormField({
-          ...item.broker_c_number,
-          value: item.broker_c_number
-        }),
-        id_number: Form.createFormField({
-          ...item.id_number,
-          value: item.id_number
-        }),
-        insurance_c_number: Form.createFormField({
-          ...item.insurance_c_number,
-          value: item.insurance_c_number
-        }),
-        contact_details: Form.createFormField({
-          ...item.contact_details,
-          value: item.contact_details
-        }),
-        desc_of_loss: Form.createFormField({
-          ...item.desc_of_loss,
-          value: item.desc_of_loss
-        }),
-        drivers_licence: Form.createFormField({
-          ...item.drivers_licence,
-          value: item.drivers_licence
-        }),
-        licence_code: Form.createFormField({
-          ...item.licence_code,
-          value: item.licence_code
-        }),
-        asset_code: Form.createFormField({
-          ...item.asset_code,
-          value: item.asset_code
-        }),
+      saps_number: Form.createFormField({
+        ...item.saps_number,
+        value: item.saps_number
+      }),
 
-        make: Form.createFormField({
-          ...item.make,
-          value: item.make
-        }),
-        model: Form.createFormField({
-          ...item.model,
-          value: item.model
-        }),
-        serial_number: Form.createFormField({
-          ...item.serial_number,
-          value: item.serial_number
-        }),
-        asset_value: Form.createFormField({
-          ...item.asset_value,
-          value: item.asset_value
-        }),
-        motor: Form.createFormField({
-          ...item.motor,
-          value: item.motor
-        }),
-        total_loss: Form.createFormField({
-          ...item.total_loss,
-          value: item.total_loss
-        }),
-        engine_number: Form.createFormField({
-          ...item.engine_number,
-          value: item.engine_number
-        }),
-        vin_number: Form.createFormField({
-          ...item.vin_number,
-          value: item.vin_number
-        }),
-        reg_number: Form.createFormField({
-          ...item.reg_number,
-          value: item.reg_number
-        }),
-        remove_cover: Form.createFormField({
-          ...item.remove_cover,
-          value: item.remove_cover
-        }),
-        damage_desc: Form.createFormField({
-          ...item.damage_desc,
-          value: item.damage_desc
-        }),
-        assessor_name: Form.createFormField({
-          ...item.assessor_name,
-          value: item.assessor_name
-        }),
+      case_number: Form.createFormField({
+        ...item.case_number,
+        value: item.case_number
+      }),
+      claim_number: Form.createFormField({
+        ...item.claim_number,
+        value: item.claim_number
+      }),
+      name_user: Form.createFormField({
+        ...item.name_user,
+        value: item.name_user
+      }),
+      broker_c_number: Form.createFormField({
+        ...item.broker_c_number,
+        value: item.broker_c_number
+      }),
+      id_number: Form.createFormField({
+        ...item.id_number,
+        value: item.id_number
+      }),
+      insurance_c_number: Form.createFormField({
+        ...item.insurance_c_number,
+        value: item.insurance_c_number
+      }),
+      contact_details: Form.createFormField({
+        ...item.contact_details,
+        value: item.contact_details
+      }),
+      desc_of_loss: Form.createFormField({
+        ...item.desc_of_loss,
+        value: item.desc_of_loss
+      }),
+      drivers_licence: Form.createFormField({
+        ...item.drivers_licence,
+        value: item.drivers_licence
+      }),
+      licence_code: Form.createFormField({
+        ...item.licence_code,
+        value: item.licence_code
+      }),
+      asset_code: Form.createFormField({
+        ...item.asset_code,
+        value: item.asset_code
+      }),
 
-        assessment_fees: Form.createFormField({
-          ...item.assessment_fees,
-          value: item.assessment_fees
-        }),
-        fees: Form.createFormField({
-          ...item.fees,
-          value: item.fees
-        }),
-        claimed_amount: Form.createFormField({
-          ...item.claimed_amount,
-          value: item.claimed_amount
-        }),
-        excess: Form.createFormField({
-          ...item.excess,
-          value: item.excess
-        }),
-        invoice: Form.createFormField({
-          ...item.invoice,
-          value: item.invoice
-        }),
-        contractor_name: Form.createFormField({
-          ...item.contractor_name,
-          value: item.contractor_name
-        }),
-        notes: Form.createFormField({
-          ...item.notes,
-          value: item.notes
-        }),
-        status: Form.createFormField({
-          ...item.status,
-          value: item.status
-        })
-      }
+      make: Form.createFormField({
+        ...item.make,
+        value: item.make
+      }),
+      model: Form.createFormField({
+        ...item.model,
+        value: item.model
+      }),
+      serial_number: Form.createFormField({
+        ...item.serial_number,
+        value: item.serial_number
+      }),
+      asset_value: Form.createFormField({
+        ...item.asset_value,
+        value: item.asset_value
+      }),
+      motor: Form.createFormField({
+        ...item.motor,
+        value: item.motor
+      }),
+      total_loss: Form.createFormField({
+        ...item.total_loss,
+        value: item.total_loss
+      }),
+      engine_number: Form.createFormField({
+        ...item.engine_number,
+        value: item.engine_number
+      }),
+      vin_number: Form.createFormField({
+        ...item.vin_number,
+        value: item.vin_number
+      }),
+      reg_number: Form.createFormField({
+        ...item.reg_number,
+        value: item.reg_number
+      }),
+      remove_cover: Form.createFormField({
+        ...item.remove_cover,
+        value: item.remove_cover
+      }),
+      damage_desc: Form.createFormField({
+        ...item.damage_desc,
+        value: item.damage_desc
+      }),
+      assessor_name: Form.createFormField({
+        ...item.assessor_name,
+        value: item.assessor_name
+      }),
+
+      assessment_fees: Form.createFormField({
+        ...item.assessment_fees,
+        value: item.assessment_fees
+      }),
+      fees: Form.createFormField({
+        ...item.fees,
+        value: item.fees
+      }),
+      claimed_amount: Form.createFormField({
+        ...item.claimed_amount,
+        value: item.claimed_amount
+      }),
+      excess: Form.createFormField({
+        ...item.excess,
+        value: item.excess
+      }),
+      invoice: Form.createFormField({
+        ...item.invoice,
+        value: item.invoice
+      }),
+      contractor_name: Form.createFormField({
+        ...item.contractor_name,
+        value: item.contractor_name
+      }),
+      notes: Form.createFormField({
+        ...item.notes,
+        value: item.notes
+      }),
+      status: Form.createFormField({
+        ...item.status,
+        value: item.status
+      })
     }
   }
 })(ClaimForm)
@@ -353,6 +369,7 @@ const mapStateToProps = (
   { match: { params } }
 ) => ({
   item: Object.keys(claim).length > 0 ? claim : item,
+  claim,
   ...params
 })
 

@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
@@ -7,7 +8,6 @@ import Intl from 'shared/hocs/intl'
 import { Layout, Menu, Icon } from 'antd'
 import { getModules } from 'shared/static/modules'
 import storage from 'shared/lib/storage'
-import logo from 'shared/assets/logo.svg'
 
 const { Sider } = Layout
 const { SubMenu } = Menu
@@ -18,7 +18,7 @@ const Nav = ({ copy, isCollapsed, OnCollapse }) => {
   const Logo = (
     <div className="ant-pro-sider-menu-logo" id="logo">
       <Link to="/dashboard">
-        <img src={logo} alt="logo" style={{ height: 32 }} />
+        <img src={require('shared/assets/logo.jpeg')} alt="Blaaumac" />
         <h1>{copy.shared('mainTitle')}</h1>
       </Link>
     </div>

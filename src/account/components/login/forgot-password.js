@@ -1,8 +1,8 @@
+/* eslint-disable global-require */
 import React from 'react'
 import Intl from 'shared/hocs/intl'
 import PropTypes from 'prop-types'
 import { Form, Icon, Input, Button } from 'antd'
-import { ReactComponent as Logo } from 'shared/assets/logo.svg'
 import { Link } from 'react-router-dom'
 import MainFooter from 'shared/components/layouts/MainFooter'
 
@@ -12,7 +12,7 @@ let UserPasswordReset = ({ copy, form: { getFieldDecorator } }) => {
       <div className="login-content">
         <div className="login-top">
           <div className="login-header">
-            <Logo alt="logo" className="login-logo" />
+            <img src={require('shared/assets/logo.jpeg')} alt="Blaaumac" />
             <span className="login-title">{copy.login('Blaauwmac')}</span>
           </div>
           <div className="login-desc">{copy.login('Commercial Claims System™')}</div>

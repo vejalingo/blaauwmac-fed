@@ -71,6 +71,7 @@ const ClaimList = ({ orgId, listItems, deleteClaim, updateClaim }) => {
     },
     {
       title: 'Actions',
+      fixed: 'right',
       render: data => (
         <Dropdown.Button overlay={() => menu(data?._id, data?.claim_number)}>
           <Link to={`/claims/${orgId}/edit/${data?._id}`}>
@@ -82,7 +83,7 @@ const ClaimList = ({ orgId, listItems, deleteClaim, updateClaim }) => {
     }
   ]
 
-  return <Table columns={columns} dataSource={listItems} />
+  return <Table columns={columns} dataSource={listItems} scroll={{ x: 1500 }} />
 }
 
 export default Intl({

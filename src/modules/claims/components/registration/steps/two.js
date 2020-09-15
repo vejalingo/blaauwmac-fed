@@ -98,7 +98,7 @@ const Two = ({ gfd }) => {
         </Form.Item>
 
         <Form.Item
-          label="Motor"
+          label="Driver Details"
           style={{ display: 'inline-block', width: 'calc(100% - 20px)', margin: 10 }}
         >
           {gfd('motor')(<Checkbox onChange={onMotorChanged} />)}
