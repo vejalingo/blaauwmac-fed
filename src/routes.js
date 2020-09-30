@@ -20,6 +20,7 @@ import UserRegister from './account/components/login/registerContainer'
 
 // Dashboard
 import Dashboard from './modules/dashboard/index'
+import MainDashboard from './modules/dashboard'
 
 // Claims
 import ClaimsRegistration from './modules/claims/components/registration/form'
@@ -75,6 +76,7 @@ const Routes = ({ history }) => (
 
     {/* Dashboard */}
     <PrivateRoute exact path="/dashboard" wrapper={BasicLayout} component={Dashboard} />
+    <PrivateRoute exact path="/overview" wrapper={BasicLayout} component={MainDashboard} />
 
     {/* Claims */}
     <PrivateRoute

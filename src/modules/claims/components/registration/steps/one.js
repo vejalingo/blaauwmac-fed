@@ -1,11 +1,25 @@
 import React, { useState } from 'react'
 import { DatePicker, Form, Input, Button, Select, message } from 'antd'
 import { formatDate, getDifference } from 'shared/lib/dates'
+import moment from 'moment'
 
 const { TextArea } = Input
 const { Option } = Select
 
 const cData = {
+  Motor: [
+    'Private type motor cars',
+    'LDVS',
+    'Commercial Vehicle',
+    'Mini Buses',
+    'Special types',
+    'Ambulance Fire & Theft',
+    'Fire Engines',
+    'Motor Cycle',
+    'Tractors',
+    'Trailers',
+    'High Valued Vehicles'
+  ],
   Combined: [
     'Standard Constructed Buildings ',
     'Escalation 15% ',
@@ -52,12 +66,12 @@ const cData = {
     'Councillors, Speaker, Mayor and Deputy Mayor',
     'Officials',
     'Temporary staff'
-  ]
+  ],
+  'Motor Liability': ['Motor Liability '],
+  'Public Liability': ['General Liability']
 }
 
 const One = ({ gfd, formType }) => {
-  console.log('FormType', formType)
-  console.log(formType === 'create')
   const [selectedDate, updateSelectedDate] = useState(new Date())
   const [selectedSection, updateSubSection] = useState('Combined')
 
@@ -99,20 +113,14 @@ const One = ({ gfd, formType }) => {
         <Form.Item label="Date of loss" style={{ display: 'inline-block', margin: 10 }}>
           {gfd('date_loss', {
             rules: [{ required: formType === 'create', message: 'Date of loss is required' }]
-          })(
-            <DatePicker
-              disabled={formType && formType === 'edit'}
-              style={{ marginRight: 10 }}
-              onChange={val => updateSelectedDate(val)}
-            />
-          )}
+          })(<DatePicker style={{ marginRight: 10 }} onChange={val => updateSelectedDate(val)} />)}
         </Form.Item>
 
         <Form.Item label="Registration" style={{ display: 'inline-block', margin: 10 }}>
           {gfd('date_registration')(
-            <Input
-              defaultValue={formType === 'create' && new Date()}
-              placeholder={formType === 'create' && formatDate(new Date())}
+            <DatePicker
+              defaultValue={formType === 'create' && moment()}
+              placeholder={formType === 'create' && formatDate(moment())}
               disabled
             />
           )}

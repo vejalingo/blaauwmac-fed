@@ -2,6 +2,7 @@ import { transform } from 'lodash'
 
 const initialListState = {
   listItems: [],
+  dashboardData: [],
   pagination: {},
   fetching: true
 }
@@ -10,8 +11,8 @@ export const list = ({ path, pathReset }) => (state = initialListState, action) 
   switch (action.type) {
     case `${path}/list/FETCHED_ITEMS`:
       // eslint-disable-next-line no-case-declarations
-      const { items = [], pagination } = action
-      return { ...state, listItems: items, pagination, fetching: false }
+      const { items = [], pagination, dashboardData = [] } = action
+      return { ...state, listItems: items, dashboardData, pagination, fetching: false }
     case `${path}/list/FETCHING`:
       return { ...state, listItems: [], fetching: true }
     case `${path}/list/FETCH_ERROR`:

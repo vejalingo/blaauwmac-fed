@@ -37,84 +37,9 @@ const { Search } = Input
 const { Option } = Select
 const { RangePicker } = DatePicker
 
-function Render({ listItems, orgId, OnSearch, ...props }) {
-  const buildingCombinedOpened = listItems
-    ?.filter(pred => pred.policy_section === 'Combined')
-    .filter(pred => !['Settled', 'Repudiated'].includes(pred.status)).length
-
-  const buildingCombinedPaid = listItems
-    ?.filter(pred => pred.policy_section === 'Combined')
-    .filter(pred => pred.status === 'Settled').length
-
-  const buildingCombinedRepudiated = listItems
-    ?.filter(pred => pred.policy_section === 'Combined')
-    .filter(pred => pred.status === 'Repudiated').length
-
-  const businessOpened = listItems
-    ?.filter(pred => pred.policy_section === 'Business All Risks')
-    .filter(pred => !['Settled', 'Repudiated'].includes(pred.status)).length
-
-  const businessPaid = listItems
-    ?.filter(pred => pred.policy_section === 'Business All Risks')
-    .filter(pred => pred.status === 'Settled').length
-
-  const businessRepudiated = listItems
-    ?.filter(pred => pred.policy_section === 'Business All Risks')
-    .filter(pred => pred.status === 'Repudiated').length
-
-  const motorOpened = listItems
-    ?.filter(pred => pred.policy_section === 'Motor')
-    .filter(pred => !['Settled', 'Repudiated'].includes(pred.status)).length
-
-  const motorPaid = listItems
-    ?.filter(pred => pred.policy_section === 'Motor')
-    .filter(pred => pred.status === 'Settled').length
-
-  const motorRepudiated = listItems
-    ?.filter(pred => pred.policy_section === 'Motor')
-    .filter(pred => pred.status === 'Repudiated').length
-
-  const liabilityOpened = listItems
-    ?.filter(pred => pred.policy_section === 'Public Liability')
-    .filter(pred => !['Settled', 'Repudiated'].includes(pred.status)).length
-
-  const liabilityPaid = listItems
-    ?.filter(pred => pred.policy_section === 'Public Liability')
-    .filter(pred => pred.status === 'Settled').length
-
-  const liabilityRepudiated = listItems
-    ?.filter(pred => pred.policy_section === 'Public Liability')
-    .filter(pred => pred.status === 'Repudiated').length
-
-  const data = [
-    {
-      name: 'Building Combined',
-      'Open Claims': buildingCombinedOpened,
-      'Paid Claims': buildingCombinedPaid,
-      Repudiated: buildingCombinedRepudiated
-    },
-    {
-      name: 'Business All Risk',
-      'Open Claims': businessOpened,
-      'Paid Claims': businessPaid,
-      Repudiated: businessRepudiated
-    },
-    {
-      name: 'Motor',
-      'Open Claims': motorOpened,
-      'Paid Claims': motorPaid,
-      Repudiated: motorRepudiated
-    },
-    {
-      name: 'Public Liability',
-      'Open Claims': liabilityOpened,
-      'Paid Claims': liabilityPaid,
-      Repudiated: liabilityRepudiated
-    }
-  ]
-
+function Render({ listItems, dashboardData, orgId, OnSearch, ...props }) {
   const charts = (
-    <BarChart width={1160} height={300} data={data}>
+    <BarChart width={1160} height={300} data={dashboardData}>
       <CartesianGrid strokeDasharray="4 4" />
       <XAxis dataKey="name" />
       <YAxis domain={['auto', 'auto']} />
@@ -171,9 +96,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { copy, listItems, fetching } = this.props
-    console.log(listItems)
-
+    const { copy, fetching } = this.props
     const { orgId } = this.state
 
     return (

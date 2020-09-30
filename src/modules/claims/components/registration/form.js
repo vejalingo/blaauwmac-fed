@@ -6,7 +6,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Intl from 'shared/hocs/intl'
 import { Typography, Form, Input, Button, Collapse, Select, Switch, Steps, message } from 'antd'
-
+import moment from 'moment'
+import { formatDate, getDifference } from 'shared/lib/dates'
 import { formatDateTime } from 'shared/lib/dates'
 
 import * as claimActions from '../../state/registration'
@@ -193,8 +194,8 @@ ClaimForm = Form.create({
           value: claim.saps_number
         }),
         date_loss: Form.createFormField({
-          ...claim.date_loss,
-          value: claim.date_loss
+          ...item.date_loss,
+          value: item.date_loss
         }),
         date_registration: Form.createFormField({
           ...claim.date_registration,
@@ -227,6 +228,16 @@ ClaimForm = Form.create({
       saps_number: Form.createFormField({
         ...item.saps_number,
         value: item.saps_number
+      }),
+
+      date_loss: Form.createFormField({
+        ...(formType === 'edit' && moment(item.date_loss, 'YYYY/MM/DD')),
+        value: formType === 'edit' && moment(item.date_loss, 'YYYY/MM/DD')
+      }),
+
+      date_registration: Form.createFormField({
+        ...(formType === 'edit' && moment(item.date_registration, 'YYYY/MM/DD')),
+        value: formType === 'edit' && moment(item.date_registration, 'YYYY/MM/DD')
       }),
 
       case_number: Form.createFormField({

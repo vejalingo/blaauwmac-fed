@@ -29,8 +29,8 @@ let UserLogin = ({
         <div className="login-top">
           <div className="login-header">
             <img
-              style={submitting ? { width: '100%', height: '100%' } : {}}
-              src={require('shared/assets/logo.jpeg')}
+              style={submitting ? { width: '600px', height: 'auto' } : {}}
+              src={require('shared/assets/logo.png')}
               alt="Blaaumac"
             />
           </div>

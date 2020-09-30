@@ -1,8 +1,8 @@
 {
   "name": "SMS Portal",
   "short_name": "SMSP",
-  "theme_color": "#101a51",
-  "background_color": "#101a51",
+  "theme_color": "#147fbd",
+  "background_color": "#147fbd",
   "display": "standalone",
   "orientation": "portrait",
   "Scope": "/",
@@ -22,7 +22,7 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
-    }	    
+    }
   ],
   "splash_pages": null
 }

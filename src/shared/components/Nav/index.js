@@ -30,7 +30,7 @@ const Nav = ({ copy, isCollapsed, OnCollapse }) => {
         {Logo}
         {modules.length ? (
           <span>
-            <Menu theme="light" mode="inline">
+            <Menu theme="light" mode="inline" defaultOpenKeys={['sub0', 'sub1']}>
               {modules.map(({ key, link, title, icon, sub }, idx) =>
                 sub && sub.length > 0 ? (
                   <SubMenu

@@ -24,11 +24,14 @@ export const fetchClaims = (userId, query = {}) => async dispatch => {
   query = dispatch(updateQuery(query))
   dispatch({ type: 'shared/list/FETCHING' })
 
-  const { data, errors } = await api.get(`/claims/${userId}`, { params: paginateQuery(query) })
+  const { data, dashboardData, errors } = await api.get(`/claims/${userId}`, {
+    params: paginateQuery(query)
+  })
   if (data) {
     dispatch({
       type: 'shared/list/FETCHED_ITEMS',
-      items: data.map(d => toClient(d))
+      items: data.map(d => toClient(d)),
+      dashboardData: dashboardData.filter((v, i, a) => a.findIndex(t => t.name === v.name) === i)
     })
   } else {
     dispatch({ type: 'shared/list/FETCH_ERROR' })

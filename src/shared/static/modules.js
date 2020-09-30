@@ -8,7 +8,7 @@ export const getModules = id =>
     : [
         {
           title: copy('Claims'),
-          key: 'modules',
+          key: 'claims',
           icon: 'exclamation-circle',
           link: `/claims/`,
           sub: [
@@ -26,12 +26,17 @@ export const getModules = id =>
               title: copy('Claims Report'),
               icon: 'project',
               link: `/claims/${id}/reports`
+            },
+            {
+              title: copy('Overview'),
+              icon: 'pie-chart',
+              link: `/overview`
             }
           ]
         },
         {
           title: copy('Underwriting'),
-          key: 'modules',
+          key: 'underwriting',
           icon: 'snippets',
           link: `/underwriting/${id}`,
           sub: [
