@@ -31,7 +31,7 @@ export const fetchClaims = (userId, query = {}) => async dispatch => {
     dispatch({
       type: 'shared/list/FETCHED_ITEMS',
       items: data.map(d => toClient(d)),
-      dashboardData: dashboardData.filter((v, i, a) => a.findIndex(t => t.name === v.name) === i)
+      dashboardData
     })
   } else {
     dispatch({ type: 'shared/list/FETCH_ERROR' })
@@ -43,8 +43,8 @@ export const createClaim = (userId, data) => dispatch => {
   api
     .post(`/claims/${userId}`, { data })
     .then(() => {
-      window.location.reload()
       dispatch(push('/dashboard'))
+      // window.location.reload()
     })
     .catch(({ description }) => {
       dispatch({ type: 'shared/form/SUBMITTED', messages: description })

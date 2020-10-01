@@ -197,10 +197,10 @@ ClaimForm = Form.create({
           ...item.date_loss,
           value: item.date_loss
         }),
-        date_registration: Form.createFormField({
-          ...claim.date_registration,
-          value: claim.date_registration
-        }),
+        // date_registration: Form.createFormField({
+        //   ...claim.date_registration,
+        //   value: claim.date_registration
+        // }),
         date_acquired: Form.createFormField({
           ...claim.date_acquired,
           value: claim.date_acquired
@@ -236,8 +236,8 @@ ClaimForm = Form.create({
       }),
 
       date_registration: Form.createFormField({
-        ...(formType === 'edit' && moment(item.date_registration, 'YYYY/MM/DD')),
-        value: formType === 'edit' && moment(item.date_registration, 'YYYY/MM/DD')
+        ...item.date_registration,
+        value: moment(item.date_registration, 'YYYY/MM/DD') || moment()
       }),
 
       case_number: Form.createFormField({
