@@ -4,7 +4,7 @@
 import React from 'react'
 import Intl from 'shared/hocs/intl'
 import PropTypes from 'prop-types'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Icon, Input, Button, Checkbox, Progress } from 'antd'
 import MainFooter from 'shared/components/layouts/MainFooter'
 
 let UserLogin = ({
@@ -34,6 +34,7 @@ let UserLogin = ({
               alt="Blaaumac"
             />
           </div>
+          {submitting && <Progress strokeWidth={15} percent={50} status="active" />}
         </div>
 
         {!submitting && (

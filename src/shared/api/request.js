@@ -62,8 +62,8 @@ const errorHandler = error => {
  * Default parameters when configuring request
  */
 
-// const basePath = 'https://blaaumac-be.herokuapp.com'
-const basePath = 'http://localhost:3005'
+const basePath = 'https://blaaumac-be.herokuapp.com'
+// const basePath = 'http://localhost:3005'
 const apiPrefix = 'api/v1'
 const requestHandler = extend({
   prefix: `${basePath}/${apiPrefix}`,

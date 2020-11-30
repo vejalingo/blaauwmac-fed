@@ -44,7 +44,7 @@ export const createClaim = (userId, data) => dispatch => {
     .post(`/claims/${userId}`, { data })
     .then(() => {
       dispatch(push('/dashboard'))
-      // window.location.reload()
+      window.location.reload()
     })
     .catch(({ description }) => {
       dispatch({ type: 'shared/form/SUBMITTED', messages: description })
@@ -57,6 +57,7 @@ export const updateClaim = (userId, claimId, data) => dispatch => {
     .put(`/claims/${userId}/${claimId}`, { data })
     .then(() => {
       dispatch(push('/dashboard'))
+      window.location.reload()
     })
     .catch(error => {
       dispatch({ type: 'shared/form/SUBMITTED' })
@@ -69,6 +70,7 @@ export const deleteClaim = (userId, claimId) => dispatch => {
     .delete(`/claims/${userId}/${claimId}`)
     .then(() => {
       dispatch(push('/dashboard'))
+      window.location.reload()
     })
     .catch(({ description }) => {
       dispatch({ type: 'shared/form/SUBMITTED', messages: description })
