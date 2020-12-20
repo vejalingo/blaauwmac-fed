@@ -23,7 +23,7 @@ let UserLogin = ({
     })
   }
   
-  const randPerentage = Math.floor(Math.random() * (100 - 1) + 1)
+  const randPerentage = Math.floor(Math.random() * (99 - 1) + 1)
 
   return (
     <div className="login-container">
