@@ -22,6 +22,8 @@ let UserLogin = ({
       }
     })
   }
+  
+  const randPerentage = Math.floor(Math.random() * (100 - 1) + 1)
 
   return (
     <div className="login-container">
@@ -34,7 +36,7 @@ let UserLogin = ({
               alt="Blaaumac"
             />
           </div>
-          {submitting && <Progress strokeWidth={15} percent={50} status="active" />}
+          {submitting && <Progress strokeWidth={15} percent={randPerentage} status="active" />}
         </div>
 
         {!submitting && (
